@@ -14,26 +14,14 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        getData()
     }
     
-    func getData() {
-        //https://wiki.teamfortress.com/wiki/WebAPI
-        //to get more api calls
-        let url = URL(string: "https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v1/?key=&language=en_us")!
-        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 5)
-        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
-        let task = session.dataTask(with: request) { (data, response, error) in
-            // This will run when the network request returns
-            if let data = data {
-                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String: Any]
-                print(dataDictionary)
-               
-            } else {
-                print(error?.localizedDescription ?? "just error")
+    func getHeroes() {
+        APIManager().getData { (heroArray, error) in
+            for hero in heroArray! {
+                print(hero.heroName)
             }
         }
-        task.resume()
     }
 
     /*
