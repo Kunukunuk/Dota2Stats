@@ -13,6 +13,12 @@ class HeroCell: UITableViewCell {
     @IBOutlet weak var heroImage: UIImageView!
     @IBOutlet weak var heroNameLabel: UILabel!
     
+    var heroInfo: Hero? {
+        didSet {
+            heroNameLabel.text = heroInfo?.heroName
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

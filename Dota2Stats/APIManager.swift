@@ -17,7 +17,7 @@ class APIManager{
     
     func getData(completion: @escaping ([Hero]?, Error?) -> ()) {
         var heroArray: [Hero] = []
-        let url = URL(string: "https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v1/?key=<yourkey>&language=en_us")!
+        let url = URL(string: "https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v1/?key=yourkey&language=en_us")!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let dataJson = data else {
                 print(error?.localizedDescription ?? "just error")
@@ -33,6 +33,20 @@ class APIManager{
                 heroArray.append(eachHero)
             }
             completion(heroArray, nil)
+            
+        }
+        task.resume()
+    }
+    
+    func getHeroImage(with heroName: String) {
+        let url = URL(string: "https://cdn.dota2.com/apps/dota2/images/heroes/\(heroName)_full.png")
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            guard let dataPic = data else {
+                print(error?.localizedDescription ?? "error getting picture")
+                return
+            }
+            
+            print(dataPic)
             
         }
         task.resume()

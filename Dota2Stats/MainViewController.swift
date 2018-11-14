@@ -8,22 +8,40 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    var heroes: [Hero] = []
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        getHeroes()
     }
     
     func getHeroes() {
         APIManager().getData { (heroArray, error) in
             for hero in heroArray! {
-                print(hero.heroName)
+                self.heroes.append(hero)
             }
         }
+        tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return heroes.count
     }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HeroCell", for: indexPath) as! HeroCell
+        cell.heroInfo = heroes[indexPath.row]
+        
+        return cell
+    }
     /*
     // MARK: - Navigation
 
