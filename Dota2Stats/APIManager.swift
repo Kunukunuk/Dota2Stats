@@ -39,7 +39,8 @@ class APIManager{
     }
     
     func getHeroImage(with heroName: String) {
-        let url = URL(string: "https://cdn.dota2.com/apps/dota2/images/heroes/\(heroName)_full.png")
+        
+        let url = URL(string: "http://cdn.dota2.com/apps/dota2/images/heroes/\(heroName)_full.png")
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             guard let dataPic = data else {
                 print(error?.localizedDescription ?? "error getting picture")

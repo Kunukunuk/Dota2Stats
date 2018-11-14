@@ -23,7 +23,7 @@ class Hero {
         
         let heroNameArray = heroNotReadableName?.components(separatedBy: "hero_")
         
-        APIManager().getHeroImage(with: heroNameArray![0])
+        APIManager().getHeroImage(with: heroNameArray![1])
         
     }
     
