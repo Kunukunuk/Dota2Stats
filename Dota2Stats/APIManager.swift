@@ -29,6 +29,7 @@ class APIManager{
             let heroes = results["heroes"] as! NSArray
             
             for hero in heroes {
+                
                 let eachHero = Hero.init(heroInfo: hero)
                 heroArray.append(eachHero)
             }
@@ -38,18 +39,4 @@ class APIManager{
         task.resume()
     }
     
-    func getHeroImage(with heroName: String) {
-        
-        let url = URL(string: "http://cdn.dota2.com/apps/dota2/images/heroes/\(heroName)_full.png")
-        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            guard let dataPic = data else {
-                print(error?.localizedDescription ?? "error getting picture")
-                return
-            }
-            
-            print(dataPic)
-            
-        }
-        task.resume()
-    }
 }

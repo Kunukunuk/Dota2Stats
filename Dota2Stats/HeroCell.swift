@@ -16,6 +16,11 @@ class HeroCell: UITableViewCell {
     var heroInfo: Hero? {
         didSet {
             heroNameLabel.text = heroInfo?.heroName
+            if heroInfo?.pathURL != nil {
+                if let picture = try? Data(contentsOf: (heroInfo?.pathURL)!) {
+                    heroImage.image = UIImage(data: picture)
+                }
+            }
         }
     }
     

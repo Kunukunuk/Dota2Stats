@@ -45,6 +45,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Hbi-TD-ep7" firstAttribute="top" secondItem="Dcz-1k-I2I" secondAttribute="topMargin" constant="5" id="Bhc-zY-fEf"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gma-uI-WDZ" secondAttribute="bottom" id="GdW-K7-gHv"/>
                                                 <constraint firstItem="Hbi-TD-ep7" firstAttribute="leading" secondItem="gma-uI-WDZ" secondAttribute="trailing" constant="5" id="TgS-p2-QVQ"/>
                                                 <constraint firstItem="gma-uI-WDZ" firstAttribute="leading" secondItem="Dcz-1k-I2I" secondAttribute="leading" constant="5" id="Yky-kb-NhX"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Hbi-TD-ep7" secondAttribute="trailing" constant="5" id="wit-Yl-ZHf"/>

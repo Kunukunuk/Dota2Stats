@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 class Hero {
     
     var heroID: Int?
     var heroName: String?
     var heroNotReadableName: String?
+    var pathURL: URL?
     
     init(heroInfo: Any) {
         let heroDict = heroInfo as! [String: Any]
@@ -21,19 +23,10 @@ class Hero {
         heroName = heroDict["localized_name"] as? String
         heroNotReadableName = heroDict["name"] as? String
         
-        let heroNameArray = heroNotReadableName?.components(separatedBy: "hero_")
         
-        APIManager().getHeroImage(with: heroNameArray![1])
+        let heroNameArray = heroNotReadableName?.components(separatedBy: "hero_")
+        pathURL = URL(string: "http://cdn.dota2.com/apps/dota2/images/heroes/\(heroNameArray![1])_full.png")
         
     }
     
-    /*class func movies(dictionaries: NSArray) -> [Hero] {
-        var movies: [Hero] = []
-        for dictionary in dictionaries {
-            let movie = Hero(dictionary: dictionary)
-            movies.append(movie)
-        }
-        
-        return movies
-    }*/
 }

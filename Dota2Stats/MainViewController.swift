@@ -24,8 +24,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func getHeroes() {
         APIManager().getData { (heroArray, error) in
-            for hero in heroArray! {
-                self.heroes.append(hero)
+            if let existHeroes = heroArray {
+                self.heroes = existHeroes
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
         tableView.reloadData()
@@ -35,6 +41,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return heroes.count
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "HeroCell", for: indexPath) as! HeroCell
