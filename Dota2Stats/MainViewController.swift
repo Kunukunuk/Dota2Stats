@@ -20,6 +20,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         
         getHeroes()
+        getLiveGames()
     }
     
     func getHeroes() {
@@ -30,11 +31,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.tableView.reloadData()
                 }
             }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
         }
         tableView.reloadData()
+    }
+    
+    func getLiveGames() {
+        APIManager().getLiveGames()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

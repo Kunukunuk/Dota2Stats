@@ -11,13 +11,15 @@ import Foundation
 
 class APIManager{
     
+    let apiKey = "yourkey"
+    
     init() {
         
     }
     
     func getData(completion: @escaping ([Hero]?, Error?) -> ()) {
         var heroArray: [Hero] = []
-        let url = URL(string: "https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v1/?key=yourkey&language=en_us")!
+        let url = URL(string: "https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v1/?key=\(apiKey)&language=en_us")!
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let dataJson = data else {
                 print(error?.localizedDescription ?? "just error")
@@ -35,6 +37,25 @@ class APIManager{
             }
             completion(heroArray, nil)
             
+        }
+        task.resume()
+    }
+    
+    func getLiveGames() {
+        let urlGame = URL(string: "https://api.steampowered.com/IDOTA2Match_570/GetLiveLeagueGames/v1/?key=\(apiKey)")!
+        let task = URLSession.shared.dataTask(with: urlGame) { (data, response, error) in
+            guard let dataJson = data else {
+                print(error?.localizedDescription ?? "just error")
+                //completion(nil, error)
+                return
+            }
+            let dataDictionary = try! JSONSerialization.jsonObject(with: dataJson, options: []) as! [String: Any]
+            let results = dataDictionary["result"] as! [String: Any]
+            let games = results["games"] as! NSArray
+            for game in games {
+                let gameDict = game as! [String: Any]
+                print(gameDict)
+            }
         }
         task.resume()
     }
