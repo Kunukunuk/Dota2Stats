@@ -1,6 +1,6 @@
 # *Dota2Stats*
 
-**Dota2Stats** is an ios app that uses steam api to get information about dota 2.
+**Dota2Stats** is an ios app that uses https://wiki.teamfortress.com/wiki/WebAPI to get information about dota 2.
 
 Time spent: **10** hours spent in total
 
