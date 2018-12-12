@@ -6,6 +6,8 @@ Time spent: **10** hours spent in total
 
 So far it can only display hero name and images fetched from steam api
 
+**In order for it to work, you must use your own steam API key.**
+
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
